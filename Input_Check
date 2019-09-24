@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int Input_Check(double Coeff[], int* size, int* begin){
+
+    for(int i = *begin; i < 100; i++){
+        int c;
+        int check = scanf("%lg", &Coeff[i]);
+        if((c = getchar()) == '\n'){
+            *size = i + 1;
+            return 0;
+        }
+
+        if(check == 0){
+            printf("Please, try to input %d coefficient once more: ", i + 1);
+            *begin = i - 1;
+            return 1;
+        }
+    }
+
+
+}
+
+int main()
+{
+    double Coeff[100] = {0};
+    int size = 0;
+    int begin = 0;
+    int prov = 7;
+    while((prov = Input_Check(Coeff, &size, &begin)) != 0) Input_Check(Coeff, &size, &begin);
+    for(int i = 0; i < size; i++) printf("%lg ", Coeff[i]);
+    return 0;
+}
